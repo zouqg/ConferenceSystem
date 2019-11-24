@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zou.dao.ConfInfoMapper">
+
+    <insert id="addConfInfo" parameterType="ConferenceInfo">
+        insert into info (#{UId},#{CId},#{name},#{company},#{IdentityId},#{phone},#{sex},#{room})
+    </insert>
+
+    <select id="queryConfInfoByUId" parameterType="int" resultType="ConferenceInfo">
+        select *from info where UId=#{UId}
+    </select>
+
+    <select id="queryConfInfoByCId" parameterType="int" >
+        select *from info where CId=#{CId}
+    </select>
+
+    <delete id="deleteConfInfo">
+        delete from info where UId=#{UId} and CId=#{CId}
+    </delete>
+</mapper>

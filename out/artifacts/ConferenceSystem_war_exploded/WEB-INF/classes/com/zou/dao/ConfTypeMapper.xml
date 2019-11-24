@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zou.dao.ConfTypeMapper">
+
+    <insert id="addConfType" parameterType="ConferenceType">
+        insert into conf (#{UId},#{date},#{address},#{person},#{hotel},#{needName},#{needCompany},#{needIdentityId},#{needPhone},#{needSex},#{needRoom})
+    </insert>
+
+    <delete id="deleteConfTypeByCId" parameterType="int">
+        delete from conf where CId=#{CId}
+    </delete>
+
+    <select id="queryAllConfType" resultType="ConferenceType">
+        select *from conf
+    </select>
+
+    <select id="queryConfByUId" parameterType="int">
+        select * from conf where UId=#{UId};
+    </select>
+
+</mapper>

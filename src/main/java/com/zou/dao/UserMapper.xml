@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zou.dao.UserMapper">
+
+    <insert id="addUser" parameterType="User">
+        insert into user values(#{isManager},#{Uid},#{password})
+    </insert>
+
+    <delete id="deleteUserById" parameterType="int">
+        delete from user where UId=#{UId}
+    </delete>
+
+    <update id="updateUser" parameterType="User">
+        update user
+        set isManager=#{isManager},password=#{password}
+        where UId=#{UId}
+    </update>
+
+    <select id="queryAllUser" resultType="User">
+        select *from user
+    </select>
+
+    <select id="queryUserById" resultType="User">
+        select *from user
+        where UId=#{UId}
+    </select>
+
+    <select id="hasMatch" resultType="int">
+        select count(*) from user
+        where UId=#{UId} and password=#{password}
+    </select>
+
+</mapper>
