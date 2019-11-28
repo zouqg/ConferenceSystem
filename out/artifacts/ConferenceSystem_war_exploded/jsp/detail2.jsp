@@ -26,6 +26,16 @@
             text-align: right;
             border-radius: 30px;
         }
+        #down{
+            background-color: #b1524b;;
+            color: white;
+            font-size: 18px;
+            width: 100px;
+            line-height: 40px;
+            text-decoration: none;
+            float: left;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -52,6 +62,7 @@
         </div>
     </div>
 
+
     <div class="row-fluid">
         <div class="span12">
             <h3 class="text-center" style="text-align: right;height: 150px;line-height: 150px">
@@ -60,21 +71,6 @@
         </div>
     </div>
 
-    <script>
-        //filename 导出的excel文件名
-        //方法可带filename参数，亦可不带参数直接定义
-        function    table2Excel(filename){
-            $("#table2excel").table2excel({
-                exclude: ".noExl",//class="noExl"的列不导出
-                name: "Excel Document Name",
-                filename: filename,//文件名称
-                fileext: ".xlsx",//文件后缀名
-                exclude_img: true,//导出图片
-                exclude_links: true,//导出超链接
-                exclude_inputs: true//导出输入框内容
-            });
-        }
-    </script>
 </div>
 </body>
 </html>

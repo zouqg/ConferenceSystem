@@ -16,6 +16,8 @@
     <script type='text/javascript' src='http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js'></script>
     <script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
     <script type="text/javascript" src="static/js/jquery.table2excel.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+
     <style>
         #logout{
             background-color: #1b6d85;
@@ -51,13 +53,45 @@
 </head>
 
 <body>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-title">
+                <h1 class="text-center">扫描二维码获取信息</h1>
+            </div>
+
+            <div class="modal-body center-block"  >
+                <div id="Article-content" class="text-center" style="width: 200px;height: 200px"></div>
+                <form class="form-group" action="" method="post">
+                    <div class="text-center">
+                        <button class="btn btn-default" data-dismiss="modal">返回</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="login span4">
+                <h1><a href=""> 欢迎来到<strong>会议管理系统</strong></a>
+                    <span class="red">.</span></h1>
+                <a id="logout" href="/login">退出登录</a>
+            </div>
+        </div>
+    </div>
+</div> <%--header--%>
+
+
 <div class="container">
     <div class="row clear fix">
         <div class="col-md-12 column">
             <div class="page-header">
                 <p>所有的会议</p>
                 <a id="publish" href="/addConf">发布会议</a>
-                <a id="logout" href="/login">退出登录</a>
             </div>
         </div>
     </div>
@@ -86,11 +120,8 @@
                         <td>
                             <a href="${pageContext.request.contextPath}/addConfInfo?CId=${conf.CId}" >参加</a>
                             &nbsp;|&nbsp;
-                            <a onclick=init("${conf.toStringnew()}") >二维码</a>
-
-
+                            <a onclick=init("${conf.toStringnew()}") rel="tooltip" data-placement="bottom" data-toggle="modal" data-target="#myModal">二维码</a>
                         </td>
-
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -98,7 +129,7 @@
         </div>
     </div>
 
-    <div id="Article-content" style="width: 200px;height: 200px"></div>
+
 
     <div class="row clear fix">
         <div class="col-md-12 column">
@@ -188,10 +219,11 @@
 <script type="text/javascript">
 
     function init(info) {
+        $("#Article-content").html("");
         //Article-content 为显示二维码的div id
         $("#Article-content").qrcode({
             render : "canvas",    //设置渲染方式，有table和canvas，使用canvas方式渲染性能相对来说比较好
-            text:"test:"+info ,    //扫描二维码后显示的内容,可以直接填一个网址，扫描二维码后自动跳向该链接
+            text:info ,    //扫描二维码后显示的内容,可以直接填一个网址，扫描二维码后自动跳向该链接
             width : "200",               //二维码的宽度
             height : "200",              //二维码的高度
             background : "#ffffff",       //二维码的后景色

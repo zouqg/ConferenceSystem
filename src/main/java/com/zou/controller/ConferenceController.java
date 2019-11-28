@@ -116,6 +116,8 @@ public class ConferenceController {
         confInfoService.addConfInfo(info);
         List<ConferenceType> allConf = confService.queryAllConfType();
         List<ConferenceInfo> myConf =  confInfoService.queryConfInfoByUId(UId);
+        List<ConferenceType> conferenceTypes = confService.queryConfTypeByUId(UId);
+        model.addAttribute("mypub",conferenceTypes);
         model.addAttribute("allConf",allConf);
         model.addAttribute("myConf",myConf);
         if(this.isManager)
@@ -132,7 +134,10 @@ public class ConferenceController {
         List<ConferenceInfo> infos = confInfoService.queryConfInfoByCId(CId);
         model.addAttribute("conf",conf);
         model.addAttribute("info",infos);
-        return "detail";
+        if(this.isManager)
+            return "detail";
+        else
+            return "detail2";
     }
 
     // 发布新的会议
@@ -172,6 +177,24 @@ public class ConferenceController {
         else
             return "forward:attenderPage";
 
+    }
+
+    // 登录管理员页面
+    @RequestMapping("/loginAdminister")
+    public String administer(){
+        return "loginAdminister";
+    }
+
+    // 进入验证账号，进入用户管理页面
+    @RequestMapping("/validateAdminister")
+    public String validateAdminister(){
+        return "showUsers";
+    }
+
+    // 修改用户
+    @RequestMapping("/updateUser")
+    public String updateUser(){
+        return "showUsers";
     }
 
 }

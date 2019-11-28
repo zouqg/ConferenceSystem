@@ -70,6 +70,11 @@
                             Register
                         </a>
                     </div>
+                    <div>
+                        <a href="/loginAdminister" class="txt1">
+                            Administer Login
+                        </a>
+                    </div>
                 </div>
 
                 <div class="container-login100-form-btn">
