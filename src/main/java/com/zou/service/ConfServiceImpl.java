@@ -39,5 +39,8 @@ public class ConfServiceImpl {
     }
 
     // 查询会议
-    public ConferenceType queryConfTypeByUId(int UId){ return confTypeMapper.queryConfTypeByUId(UId); }
+    public List<ConferenceType> queryConfTypeByUId(int UId){ return confTypeMapper.queryConfTypeByUId(UId); }
+
+    // 查询会议
+    public ConferenceType queryConfTypeByCId(int CId){ return confTypeMapper.queryConfTypeByCId(CId); }
 }

@@ -20,17 +20,16 @@ public class ConfInfoServiceImpl {
         this.infoMapper = infoMapper;
     }
 
-    int addConfInfo (ConferenceInfo info){
+    public int addConfInfo (ConferenceInfo info){
         return infoMapper.addConfInfo(info);
     }
 
     // 按照用户Id查询会议信息
     public List<ConferenceInfo> queryConfInfoByUId(int UId){
-        System.out.println(infoMapper.queryConfInfoByUId(UId));
         return infoMapper.queryConfInfoByUId(UId);
     }
 
-    // 按照用户Id查询会议信息
+    // 按照会议Id查询会议信息
     public List<ConferenceInfo> queryConfInfoByCId(int CId){
         return infoMapper.queryConfInfoByCId(CId);
     }
@@ -38,4 +37,10 @@ public class ConfInfoServiceImpl {
     public int deleteConfInfo(int UId, int CId){
         return infoMapper.deleteConfInfo(UId,CId);
     }
+
+    public ConferenceInfo queryConfInfoByCIdUId(int CId,int UId){
+        return infoMapper.queryConfInfoByCIdUId(CId,UId);
+    }
+
+
 }

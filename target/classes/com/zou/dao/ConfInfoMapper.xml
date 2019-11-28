@@ -6,18 +6,24 @@
 <mapper namespace="com.zou.dao.ConfInfoMapper">
 
     <insert id="addConfInfo" parameterType="ConferenceInfo">
-        insert into info (#{UId},#{CId},#{name},#{company},#{IdentityId},#{phone},#{sex},#{room})
+        insert into Info(UId,CId,name,company,IdentityId,phone,sex,room)
+        values(#{UId},#{CId},#{name},#{company},#{IdentityId},#{phone},#{sex},#{room})
     </insert>
 
     <select id="queryConfInfoByUId" parameterType="int" resultType="ConferenceInfo">
         select *from info where UId=#{UId}
     </select>
 
-    <select id="queryConfInfoByCId" parameterType="int" >
+    <select id="queryConfInfoByCId" parameterType="int" resultType="ConferenceInfo">
         select *from info where CId=#{CId}
     </select>
 
     <delete id="deleteConfInfo">
         delete from info where UId=#{UId} and CId=#{CId}
     </delete>
+
+    <select id="queryConfInfoByCIdUId" parameterType="int" resultType="ConferenceInfo">
+        select *from info where UId=#{UId} and CId=#{CId}
+    </select>
+
 </mapper>

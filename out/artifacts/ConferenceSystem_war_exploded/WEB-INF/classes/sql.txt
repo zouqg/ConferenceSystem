@@ -1,0 +1,41 @@
+
+
+create database conference;
+
+create table User(
+    isManager boolean not null,
+    UId int not null,
+    password varchar(20) not null);
+
+insert into User values(false,123,'admin');
+
+create table conf(
+  UId int not null references User(UId),
+  CId int not null auto_increment key,
+  date datetime,
+  address varchar(100),
+  person varchar(25),
+  hotel varchar(25),
+  needName boolean,
+  needCompany boolean,
+  needIdentityId boolean,
+  needPhone boolean,
+  needSex boolean,
+  needRoom boolean);
+
+  insert into conf(UId,date,address,person,hotel,needName,needCompany,needIdentityId,needPhone,needSex,needRoom)
+  values(123,'2019-11-11','NCU','Jackma','nanchang',true,true,true,true,true,true);
+
+create table Info(
+ UId int not null references User(UId),
+ CId int not null references Conf(CId),
+ name varchar(25),
+ company varchar(25),
+ IdentityId varchar(25),
+ phone varchar(25),
+ sex varchar(5),
+ room varchar(5));
+
+ insert into Info(UId,CId,name,company,IdentityId,phone,sex,room)
+ values(123,8,'qgzou','Alibaba','1243...','1919...','male','yes');
+

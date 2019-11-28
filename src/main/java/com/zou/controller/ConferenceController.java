@@ -1,6 +1,5 @@
 package com.zou.controller;
 
-import com.zou.dao.ConfInfoMapper;
 import com.zou.pojo.ConferenceInfo;
 import com.zou.pojo.ConferenceType;
 import com.zou.pojo.User;
@@ -10,20 +9,16 @@ import com.zou.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class ConferenceController {
 
     // 记录每次登录人院的ID
     private int UId;
+    private boolean isManager;
 
     @Autowired
     private UserService userService;
@@ -36,7 +31,7 @@ public class ConferenceController {
 
 
     // 进入登录页面
-    @RequestMapping("login")
+    @RequestMapping("/login")
     public String login(){return "login";}
 
 
@@ -44,14 +39,14 @@ public class ConferenceController {
     @RequestMapping(value = "/validate")
 //    @ResponseBody
     public String validate(User user,Model model){
-        System.out.println(user);
         if(userService.hasMatch(user.getUId(),user.getPassword())>0)
         {
             User u = userService.queryUserById(user.getUId());
-            UId = user.getUId();
+            this.UId = u.getUId();
+            this.isManager = u.isManager();
             if(u.isManager())
             {
-                return "managerPage";
+                return "redirect:managerPage";
             }
             else
             {
@@ -64,10 +59,15 @@ public class ConferenceController {
         }
     }
 
-    // 参加人员进入页面
+    // 发布人员进入页面
     @RequestMapping("/managerPage")
     public String publish(Model model){
-        model.addAttribute("list","fa");
+        List<ConferenceType> allConf = confService.queryAllConfType();
+        List<ConferenceInfo> myConf =  confInfoService.queryConfInfoByUId(UId);
+        List<ConferenceType> conferenceTypes = confService.queryConfTypeByUId(UId);
+        model.addAttribute("mypub",conferenceTypes);
+        model.addAttribute("allConf",allConf);
+        model.addAttribute("myConf",myConf);
         return "managerPage";
     }
 
@@ -79,6 +79,99 @@ public class ConferenceController {
         model.addAttribute("allConf",allConf);
         model.addAttribute("myConf",myConf);
         return "attenderPage";
+    }
+
+    // 填写会议信息请求
+    @RequestMapping("/addConfInfo")
+    public String addConfInfo(int CId,Model model){
+        ConferenceType conf = confService.queryConfTypeByCId(CId);
+        conf.setNeedCompany(!conf.isNeedCompany());
+        conf.setNeedIdentityId(!conf.isNeedIdentityId());
+        conf.setNeedName(!conf.isNeedName());
+        conf.setNeedPhone(!conf.isNeedPhone());
+        conf.setNeedRoom(!conf.isNeedRoom());
+        conf.setNeedSex(!conf.isNeedSex());
+        model.addAttribute("conf",conf);
+        model.addAttribute("UId",UId);
+        if(confInfoService.queryConfInfoByCIdUId(CId,UId)!=null)
+        {
+            model.addAttribute("err","该会议已参加");
+            List<ConferenceType> allConf = confService.queryAllConfType();
+            List<ConferenceInfo> myConf =  confInfoService.queryConfInfoByUId(UId);
+            List<ConferenceType> conferenceTypes = confService.queryConfTypeByUId(UId);
+            model.addAttribute("mypub",conferenceTypes);
+            model.addAttribute("allConf",allConf);
+            model.addAttribute("myConf",myConf);
+            if(this.isManager)
+                return "redirect:managerPage";
+            else
+                return "redirect:attenderPage";
+        }
+        return "addConfInfo";
+    }
+
+    // 插入会议信息
+    @RequestMapping("/insertInfo")
+    public String insertInfo(ConferenceInfo info,Model model){
+        confInfoService.addConfInfo(info);
+        List<ConferenceType> allConf = confService.queryAllConfType();
+        List<ConferenceInfo> myConf =  confInfoService.queryConfInfoByUId(UId);
+        model.addAttribute("allConf",allConf);
+        model.addAttribute("myConf",myConf);
+        if(this.isManager)
+            return "managerPage";
+        else
+            return "attenderPage";
+
+    }
+
+    // 查看会议详细信息
+    @RequestMapping("/detail")
+    public String detail(int CId,Model model){
+        ConferenceType conf = confService.queryConfTypeByCId(CId);
+        List<ConferenceInfo> infos = confInfoService.queryConfInfoByCId(CId);
+        model.addAttribute("conf",conf);
+        model.addAttribute("info",infos);
+        return "detail";
+    }
+
+    // 发布新的会议
+    @RequestMapping("/addConf")
+    public String addConf(Model model){
+        model.addAttribute("UId",UId);
+        return "addConf";
+    }
+
+    // 插入会议信息
+    @RequestMapping("/insertConf")
+    public String insertConf(ConferenceType conferenceType){
+        confService.addConfType(conferenceType);
+        if(this.isManager)
+            return "forward:managerPage";
+        else
+            return "forward:attenderPage";
+    }
+
+    @RequestMapping("/register")
+    public String register(){
+        return "register";
+    }
+
+
+    @RequestMapping("/addUser")
+    public String addUser(User user) {
+        userService.addUser(user);
+        return "login";
+    }
+
+    // 返回首页
+    @RequestMapping("/home")
+    public String detail(){
+        if(this.isManager)
+            return "forward:managerPage";
+        else
+            return "forward:attenderPage";
+
     }
 
 }

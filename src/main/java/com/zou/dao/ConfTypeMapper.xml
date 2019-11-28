@@ -6,7 +6,8 @@
 <mapper namespace="com.zou.dao.ConfTypeMapper">
 
     <insert id="addConfType" parameterType="ConferenceType">
-        insert into conf (#{UId},#{date},#{address},#{person},#{hotel},#{needName},#{needCompany},#{needIdentityId},#{needPhone},#{needSex},#{needRoom})
+        insert into conf(UId,date,address,person,hotel,needName,needCompany,needIdentityId,needPhone,needSex,needRoom)
+        values(#{UId},#{date},#{address},#{person},#{hotel},#{needName},#{needCompany},#{needIdentityId},#{needPhone},#{needSex},#{needRoom})
     </insert>
 
     <delete id="deleteConfTypeByCId" parameterType="int">
@@ -17,8 +18,12 @@
         select *from conf
     </select>
 
-    <select id="queryConfByUId" parameterType="int">
+    <select id="queryConfTypeByUId" parameterType="int" resultType="ConferenceType">
         select * from conf where UId=#{UId};
+    </select>
+
+    <select id="queryConfTypeByCId" parameterType="int" resultType="ConferenceType">
+        select * from conf where CId=#{CId};
     </select>
 
 </mapper>

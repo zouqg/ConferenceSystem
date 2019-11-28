@@ -6,7 +6,7 @@
 <mapper namespace="com.zou.dao.UserMapper">
 
     <insert id="addUser" parameterType="User">
-        insert into user values(#{isManager},#{Uid},#{password})
+        insert into user(isManager, UId, password) values (#{isManager},#{UId},#{password})
     </insert>
 
     <delete id="deleteUserById" parameterType="int">

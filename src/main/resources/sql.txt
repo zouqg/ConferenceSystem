@@ -8,6 +8,8 @@ create table User(
     password varchar(20) not null);
 
 insert into User values(false,123,'admin');
+insert into User values(true,1,'a');
+insert into User values(false,2,'a');
 
 create table conf(
   UId int not null references User(UId),
@@ -24,7 +26,7 @@ create table conf(
   needRoom boolean);
 
   insert into conf(UId,date,address,person,hotel,needName,needCompany,needIdentityId,needPhone,needSex,needRoom)
-  values(123,'2019-11-11','南昌大学信息工程学院','Jackma','前湖迎宾馆',true,true,true,true,true,true);
+  values(123,'2019-11-11','NCU','Jackma','nanchang',true,true,true,true,true,true);
 
 create table Info(
  UId int not null references User(UId),
@@ -37,5 +39,5 @@ create table Info(
  room varchar(5));
 
  insert into Info(UId,CId,name,company,IdentityId,phone,sex,room)
- values(123,7,'qgzou','Alibaba','1243...','1919...','male','yes');
+ values(123,8,'qgzou','Alibaba','1243...','1919...','male','yes');
 

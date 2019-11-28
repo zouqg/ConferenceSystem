@@ -101,4 +101,21 @@ public class ConferenceInfo {
     public void setRoom(boolean room) {
         Room = room;
     }
+
+
+
+    @Override
+    public String toString() {
+        return "ConferenceInfo{" +
+                "UId=" + UId +
+                ", CId=" + CId +
+                ", Name='" + Name + '\'' +
+                ", Company='" + Company + '\'' +
+                ", IdentityId='" + IdentityId + '\'' +
+                ", Phone='" + Phone + '\'' +
+                ", Sex='" + Sex + '\'' +
+                ", Room=" + Room +
+                '}';
+    }
+
 }

@@ -1,0 +1,12 @@
+com\zou\pojo\Administer.class
+com\zou\service\ConfServiceImpl.class
+com\zou\dao\ConfTypeMapper.class
+com\zou\pojo\User.class
+com\zou\dao\ConfInfoMapper.class
+com\zou\pojo\ConferenceType.class
+com\zou\service\UserService.class
+com\zou\service\UserServiceImpl.class
+com\zou\controller\ConferenceController.class
+com\zou\service\ConfInfoServiceImpl.class
+com\zou\dao\UserMapper.class
+com\zou\pojo\ConferenceInfo.class

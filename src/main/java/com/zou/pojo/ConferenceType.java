@@ -136,17 +136,27 @@ public class ConferenceType {
     public String toString() {
         return "ConferenceType{" +
                 "UId=" + UId +
-                ", CId=" + CId +
-                ", date=" + date +
-                ", address='" + address + '\'' +
-                ", person='" + person + '\'' +
-                ", hotel='" + hotel + '\'' +
-                ", needName=" + needName +
-                ", needCompany=" + needCompany +
-                ", needIdentityId=" + needIdentityId +
-                ", needPhone=" + needPhone +
-                ", needSex=" + needSex +
-                ", needRoom=" + needRoom +
+                ",CId=" + CId +
+                ",date=" + date +
+                ",address='" + address + '\'' +
+                ",person='" + person + '\'' +
+                ",hotel='" + hotel + '\'' +
+                ",needName=" + needName +
+                ",needCompany=" + needCompany +
+                ",needIdentityId=" + needIdentityId +
+                ",needPhone=" + needPhone +
+                ",needSex=" + needSex +
+                ",needRoom=" + needRoom +
                 '}';
+    }
+
+    public String toStringnew() {
+        return "The_detail_of_the_conference:" +
+                "UId:" + UId +
+                ",CId:" + CId +
+                ",date:" + date +
+                ",address:" + address +
+                ",person:" + person +
+                ",hotel:" + hotel;
     }
 }

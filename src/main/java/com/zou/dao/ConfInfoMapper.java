@@ -17,6 +17,8 @@ public interface ConfInfoMapper {
     // 按照用户Id查询会议信息
     List<ConferenceInfo> queryConfInfoByCId(int CId);
 
+    ConferenceInfo queryConfInfoByCIdUId(@Param("CId") int CId,@Param("UId") int UId);
+
     int deleteConfInfo(@Param("UId") int UId,@Param("CId") int CId);
 
 }

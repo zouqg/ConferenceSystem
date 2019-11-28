@@ -16,5 +16,8 @@ public interface ConfTypeMapper {
     List<ConferenceType> queryAllConfType();
 
     // 查询会议
-    ConferenceType queryConfTypeByUId(int UId);
+    List<ConferenceType> queryConfTypeByUId(int UId);
+
+    // 查询会议
+    ConferenceType queryConfTypeByCId(int CId);
 }
