@@ -1,2 +1,2 @@
 # ConferenceSystem
-This system is used for conference manage.
+This system is a conference manage.
