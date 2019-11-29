@@ -41,3 +41,8 @@ create table Info(
  insert into Info(UId,CId,name,company,IdentityId,phone,sex,room)
  values(123,8,'qgzou','Alibaba','1243...','1919...','male','yes');
 
+create table Administer(
+AId int,
+password varchar(25));
+
+insert into Administer values(123,'123');

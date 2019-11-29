@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group" id="id">
                     <label>身份证号</label>
-                    <input type="text" class="form-control" name="IdentityId">
+                    <input type="text" class="form-control" name="IdentityId" >
                 </div>
                 <div class="form-group" id="phone">
                     <label>手机</label>
@@ -54,13 +54,13 @@
                 <div class="form-group" id="sex">
                     <label>性别</label>
                     <br>
-                    <label><input type="radio" name="sex" value="男生">男生</label> <br>
+                    <label><input type="radio" name="sex" value="男生" >男生</label> <br>
                     <label><input type="radio" name="sex" value="女生">女生</label>
                 </div>
 
                 <div class="form-group" id="room">
                     <label>
-                        <input type="checkbox" name="room"> 需要预定房间
+                        <input type="checkbox" name="room" > 需要预定房间
                     </label>
                 </div>
 

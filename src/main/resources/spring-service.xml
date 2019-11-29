@@ -22,6 +22,7 @@
 
     <bean id="ConfServiceImpl" class="com.zou.service.ConfServiceImpl"></bean>
     <bean id="ConfInfoServiceImpl" class="com.zou.service.ConfInfoServiceImpl"></bean>
+    <bean id="AdmServiceImpl" class="com.zou.service.AdmServiceImpl"></bean>
 
     <!-- 使用AOP配置事务管理器,将对数据库的修改事务进行提交 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

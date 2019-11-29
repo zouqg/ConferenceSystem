@@ -1,8 +1,10 @@
 package com.zou.controller;
 
+import com.zou.pojo.Administer;
 import com.zou.pojo.ConferenceInfo;
 import com.zou.pojo.ConferenceType;
 import com.zou.pojo.User;
+import com.zou.service.AdmServiceImpl;
 import com.zou.service.ConfInfoServiceImpl;
 import com.zou.service.ConfServiceImpl;
 import com.zou.service.UserService;
@@ -28,6 +30,9 @@ public class ConferenceController {
 
     @Autowired
     private ConfInfoServiceImpl confInfoService;
+
+    @Autowired
+    private AdmServiceImpl admService;
 
 
     // 进入登录页面
@@ -187,13 +192,25 @@ public class ConferenceController {
 
     // 进入验证账号，进入用户管理页面
     @RequestMapping("/validateAdminister")
-    public String validateAdminister(){
-        return "showUsers";
+    public String validateAdminister(int AId,String password, Model model){
+        if(admService.hadMatch(AId, password)>0){
+            List<User> users = userService.queryAllUser();
+            model.addAttribute("users",users);
+            return "showUsers";
+        }
+        model.addAttribute("err","登录失败，请检查用户名和密码！");
+        return "loginAdminister";
     }
 
     // 修改用户
     @RequestMapping("/updateUser")
-    public String updateUser(){
+    public String updateUser(Boolean isManager,int UId,Model model){
+        User user = userService.queryUserById(UId);
+        user.setManager(isManager);
+        userService.updateUser(user);
+        System.out.println(user);
+        List<User> users = userService.queryAllUser();
+        model.addAttribute("users",users);
         return "showUsers";
     }
 

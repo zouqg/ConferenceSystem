@@ -40,4 +40,8 @@
         <session-timeout>15</session-timeout>
     </session-config>
 
+    <error-page>
+        <location>/jsp/error.jsp</location>
+    </error-page>
+
 </web-app>

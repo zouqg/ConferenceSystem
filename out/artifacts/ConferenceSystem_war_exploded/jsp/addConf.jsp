@@ -60,44 +60,44 @@
                     </div>
 
                     <div class="form-group">
-                        <p>姓名：</p>
+                        <label>姓名：</label>
                         <label>
-                            <input type="radio" name="needName" value="true"> 否 <br>
+                            <input type="radio" name="needName" value="true" required> 否
                             <input type="radio" name="needName" value="false"> 是
                         </label>
                     </div>
                     <div class="form-group">
-                        <p>工作单位：</p>
+                        <label>工作单位：</label>
                         <label>
-                            <input type="radio" name="needCompany" value="true"> 否 <br>
-                            <input type="radio" name="needCompany" value="false"> 是
+                            <input type="radio" name="needCompany" value="true" required> 否
+                            <input type="radio" name="needCompany" value="false" required> 是
                         </label>
                     </div>
                     <div class="form-group">
-                        <p>身份证：</p>
+                        <label>身份证：</label>
                         <label>
-                            <input type="radio" name="needIdentityId" value="true"> 否 <br>
+                            <input type="radio" name="needIdentityId" value="true" required> 否
                             <input type="radio" name="needIdentityId" value="false"> 是
                         </label>
                     </div>
                     <div class="form-group">
-                        <p>电话：</p>
+                        <label>电话：</label>
                         <label>
-                            <input type="radio" name="needPhone" value="true"> 否 <br>
+                            <input type="radio" name="needPhone" value="true" required> 否
                             <input type="radio" name="needPhone" value="false"> 是
                         </label>
                     </div>
                     <div class="form-group">
-                        <p>性别：</p>
+                        <label>性别：</label>
                         <label>
-                            <input type="radio" name="needSex" value="true"> 否 <br>
+                            <input type="radio" name="needSex" value="true" required> 否
                             <input type="radio" name="needSex" value="false"> 是
                         </label>
                     </div>
                     <div class="form-group">
-                        <p>房间：</p>
+                        <label>房间：</label>
                         <label>
-                            <input type="radio" name="needRoom" value="true"> 否 <br>
+                            <input type="radio" name="needRoom" value="true" required> 否
                             <input type="radio" name="needRoom" value="false"> 是
                         </label>
                     </div>
