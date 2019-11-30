@@ -208,7 +208,16 @@ public class ConferenceController {
         User user = userService.queryUserById(UId);
         user.setManager(isManager);
         userService.updateUser(user);
-        System.out.println(user);
+        List<User> users = userService.queryAllUser();
+        model.addAttribute("users",users);
+        return "showUsers";
+    }
+
+    // 删除用户
+    @RequestMapping("/deleteUser")
+    public String deleteUser(int UId,Model model){
+        User user = userService.queryUserById(UId);
+        userService.deleteUserById(UId); // 删除用户
         List<User> users = userService.queryAllUser();
         model.addAttribute("users",users);
         return "showUsers";

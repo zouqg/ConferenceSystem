@@ -84,6 +84,7 @@
                     <th>密码</th>
                     <th>是否为会议发布者</th>
                     <th>设置为</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -97,6 +98,7 @@
                             &nbsp;|&nbsp;
                             <a href="${pageContext.request.contextPath}/updateUser?isManager=true&UId=${user.UId}" >发布者</a>
                         </td>
+                        <td><a href="${pageContext.request.contextPath}/deleteUser?UId=${user.UId}" >删除</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
